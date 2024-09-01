@@ -1,18 +1,15 @@
 package com.proxy_provider.demo.controller;
 
 import com.proxy_provider.demo.data.Proxy;
-import com.proxy_provider.demo.data.ProxyProviderVars;
 import com.proxy_provider.demo.service.ProxyProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(ProxyProviderVars.BASE_MAPPING)
 public class ProxyProviderController {
     @Autowired
     private final ProxyProviderService proxyProviderService;

@@ -2,6 +2,7 @@ package com.proxy_provider.demo.util;
 
 import com.proxy_provider.demo.data.Proxy;
 import com.proxy_provider.demo.data.ProxyProviderVars;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -10,12 +11,17 @@ import java.util.List;
 
 @Component
 public class DatabaseHelper {
-    private static final String HOST = System.getenv(ProxyProviderVars.DB_HOST);
-    private static final String PORT = System.getenv(ProxyProviderVars.DB_PORT);
-    private static final String DBNAME = System.getenv(ProxyProviderVars.DB_NAME);
-    private static final String USER = System.getenv(ProxyProviderVars.DB_USER);
-    private static final String PASSWORD = System.getenv(ProxyProviderVars.DB_PASSWORD);
-    private static final String URL = ProxyProviderVars.URL_PREFIX + HOST + ProxyProviderVars.COLON + PORT +
+    @Value(ProxyProviderVars.DB_HOST)
+    private String HOST;
+    @Value(ProxyProviderVars.DB_PORT)
+    private String PORT;
+    @Value(ProxyProviderVars.DB_NAME)
+    private String DBNAME;
+    @Value(ProxyProviderVars.DB_USER)
+    private String USER;
+    @Value(ProxyProviderVars.DB_PASSWORD)
+    private String PASSWORD;
+    private final String URL = ProxyProviderVars.URL_PREFIX + HOST + ProxyProviderVars.COLON + PORT +
             ProxyProviderVars.SLASH + DBNAME + ProxyProviderVars.SSL_MODE;
     public List<Proxy> getProxies(String query) {
         List<Proxy> proxies = new ArrayList<>();
